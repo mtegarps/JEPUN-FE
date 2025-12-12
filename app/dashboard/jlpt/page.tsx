@@ -64,11 +64,21 @@ export default function JLPTPage() {
       </motion.div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <Card hover className="cursor-pointer" onClick={handleGenerateQuestion}>
+        <Card hover className={`cursor-pointer ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}`} onClick={!isLoading ? handleGenerateQuestion : undefined}>
           <CardContent className="text-center py-8">
-            <FileQuestion className="w-12 h-12 mx-auto mb-3 text-japanese-pink" />
-            <h3 className="font-bold">Generate Question</h3>
-            <p className="text-sm text-gray-600">Get a random JLPT question</p>
+            {isLoading ? (
+              <>
+                <div className="w-12 h-12 mx-auto mb-3 animate-spin rounded-full border-4 border-japanese-pink border-t-transparent" />
+                <h3 className="font-bold">Generating...</h3>
+                <p className="text-sm text-gray-600">Please wait</p>
+              </>
+            ) : (
+              <>
+                <FileQuestion className="w-12 h-12 mx-auto mb-3 text-japanese-pink" />
+                <h3 className="font-bold">Generate Question</h3>
+                <p className="text-sm text-gray-600">Get a random JLPT question</p>
+              </>
+            )}
           </CardContent>
         </Card>
 
@@ -172,8 +182,15 @@ export default function JLPTPage() {
                     <p className="text-sm">{question.grammarPoint}</p>
                   </div>
 
-                  <Button onClick={handleGenerateQuestion} className="w-full">
-                    Next Question →
+                  <Button onClick={handleGenerateQuestion} className="w-full" disabled={isLoading}>
+                    {isLoading ? (
+                      <span className="flex items-center gap-2">
+                        <div className="w-4 h-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
+                        Loading...
+                      </span>
+                    ) : (
+                      'Next Question →'
+                    )}
                   </Button>
                 </div>
               )}
