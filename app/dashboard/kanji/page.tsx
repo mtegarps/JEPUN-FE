@@ -56,30 +56,32 @@ export default function KanjiPage() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 md:space-y-6">
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="bg-gradient-to-r from-japanese-purple via-japanese-pink to-japanese-yellow rounded-2xl p-6 text-white shadow-xl"
+        className="bg-gradient-to-r from-japanese-purple via-japanese-pink to-japanese-yellow rounded-xl md:rounded-2xl p-4 md:p-6 text-white shadow-xl"
       >
-        <div className="flex items-center gap-4">
-          <div className="text-5xl">🔤</div>
+        <div className="flex items-center gap-3 md:gap-4">
+          <div className="text-3xl md:text-5xl">🔤</div>
           <div>
-            <h1 className="text-3xl font-bold">Kanji Explorer</h1>
-            <p className="opacity-90">Belajar kanji dengan mnemonic kreatif</p>
+            <h1 className="text-xl md:text-3xl font-bold">Kanji Explorer</h1>
+            <p className="opacity-90 text-xs md:text-base">Belajar kanji dengan mnemonic kreatif</p>
           </div>
         </div>
       </motion.div>
 
-      <div className="flex gap-2">
+      <div className="flex flex-wrap gap-2">
         {tabs.map((tab) => (
           <Button
             key={tab.id}
             variant={activeTab === tab.id ? 'primary' : 'outline'}
             onClick={() => setActiveTab(tab.id)}
+            className="text-xs md:text-sm"
           >
-            <tab.icon className="w-4 h-4 mr-2" />
-            {tab.label}
+            <tab.icon className="w-3 h-3 md:w-4 md:h-4 mr-1 md:mr-2" />
+            <span className="hidden sm:inline">{tab.label}</span>
+            <span className="sm:hidden">{tab.label.split(' ')[0]}</span>
           </Button>
         ))}
       </div>
@@ -105,13 +107,13 @@ export default function KanjiPage() {
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                className="bg-gradient-to-r from-japanese-pink/10 to-japanese-blue/10 rounded-xl p-6 mt-4"
+                className="bg-gradient-to-r from-japanese-pink/10 to-japanese-blue/10 rounded-xl p-4 md:p-6 mt-4"
               >
-                <div className="text-center mb-4">
-                  <div className="text-8xl font-bold">{result.kanji}</div>
+                <div className="text-center mb-3 md:mb-4">
+                  <div className="text-6xl md:text-8xl font-bold">{result.kanji}</div>
                 </div>
-                <div className="bg-white rounded-xl p-4">
-                  <p className="whitespace-pre-wrap">{result.explanation}</p>
+                <div className="bg-white rounded-xl p-3 md:p-4">
+                  <p className="whitespace-pre-wrap text-sm md:text-base">{result.explanation}</p>
                 </div>
               </motion.div>
             )}
@@ -156,13 +158,13 @@ export default function KanjiPage() {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="bg-yellow-50 rounded-xl p-6"
+                className="bg-yellow-50 rounded-xl p-4 md:p-6"
               >
-                <div className="text-center mb-4">
-                  <div className="text-6xl font-bold">{mnemonic.kanji}</div>
+                <div className="text-center mb-3 md:mb-4">
+                  <div className="text-4xl md:text-6xl font-bold">{mnemonic.kanji}</div>
                 </div>
-                <div className="bg-white rounded-xl p-4">
-                  <p className="text-lg">{mnemonic.mnemonic}</p>
+                <div className="bg-white rounded-xl p-3 md:p-4">
+                  <p className="text-sm md:text-lg">{mnemonic.mnemonic}</p>
                 </div>
               </motion.div>
             )}

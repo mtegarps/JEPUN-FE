@@ -61,19 +61,19 @@ export default function ProfilePage() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 md:space-y-6">
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="bg-gradient-to-r from-japanese-pink to-japanese-purple rounded-2xl p-6 text-white shadow-xl"
+        className="bg-gradient-to-r from-japanese-pink to-japanese-purple rounded-xl md:rounded-2xl p-4 md:p-6 text-white shadow-xl"
       >
-        <div className="flex items-center gap-4">
-          <div className="w-16 h-16 rounded-full bg-white/20 flex items-center justify-center text-3xl">
+        <div className="flex items-center gap-3 md:gap-4">
+          <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-white/20 flex items-center justify-center text-xl md:text-3xl flex-shrink-0">
             {user?.fullName?.charAt(0) || 'U'}
           </div>
-          <div>
-            <h1 className="text-3xl font-bold">{user?.fullName}</h1>
-            <p className="opacity-90">{user?.email}</p>
+          <div className="min-w-0">
+            <h1 className="text-xl md:text-3xl font-bold truncate">{user?.fullName}</h1>
+            <p className="opacity-90 text-sm md:text-base truncate">{user?.email}</p>
           </div>
         </div>
       </motion.div>
@@ -159,28 +159,28 @@ export default function ProfilePage() {
       </Card>
 
       {/* Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-3 gap-3 md:gap-6">
         <Card>
-          <CardContent className="text-center py-6">
-            <div className="text-4xl mb-2">📚</div>
-            <div className="text-2xl font-bold text-gradient">342</div>
-            <p className="text-sm text-gray-600">Words Learned</p>
+          <CardContent className="text-center py-4 md:py-6">
+            <div className="text-2xl md:text-4xl mb-1 md:mb-2">📚</div>
+            <div className="text-lg md:text-2xl font-bold text-gradient">342</div>
+            <p className="text-xs md:text-sm text-gray-600">Words Learned</p>
           </CardContent>
         </Card>
 
         <Card>
-          <CardContent className="text-center py-6">
-            <div className="text-4xl mb-2">⏱️</div>
-            <div className="text-2xl font-bold text-gradient">12h</div>
-            <p className="text-sm text-gray-600">Study Time</p>
+          <CardContent className="text-center py-4 md:py-6">
+            <div className="text-2xl md:text-4xl mb-1 md:mb-2">⏱️</div>
+            <div className="text-lg md:text-2xl font-bold text-gradient">12h</div>
+            <p className="text-xs md:text-sm text-gray-600">Study Time</p>
           </CardContent>
         </Card>
 
         <Card>
-          <CardContent className="text-center py-6">
-            <div className="text-4xl mb-2">⭐</div>
-            <div className="text-2xl font-bold text-gradient">120</div>
-            <p className="text-sm text-gray-600">Points</p>
+          <CardContent className="text-center py-4 md:py-6">
+            <div className="text-2xl md:text-4xl mb-1 md:mb-2">⭐</div>
+            <div className="text-lg md:text-2xl font-bold text-gradient">120</div>
+            <p className="text-xs md:text-sm text-gray-600">Points</p>
           </CardContent>
         </Card>
       </div>

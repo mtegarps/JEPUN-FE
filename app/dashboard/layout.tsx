@@ -1,10 +1,10 @@
 'use client';
 
-import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { useRouter, usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { useAuthStore } from '@/lib/store';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   MessageCircle,
   BookOpen,
@@ -17,6 +17,8 @@ import {
   Coffee,
   Tv,
   Mic,
+  Menu,
+  X,
 } from 'lucide-react';
 
 export default function DashboardLayout({
@@ -25,13 +27,20 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   const router = useRouter();
+  const pathname = usePathname();
   const { user, isAuthenticated, logout } = useAuthStore();
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   useEffect(() => {
     if (!isAuthenticated) {
       router.push('/auth/login');
     }
   }, [isAuthenticated, router]);
+
+  // Close sidebar when route changes (mobile)
+  useEffect(() => {
+    setSidebarOpen(false);
+  }, [pathname]);
 
   const navigation = [
     { name: 'Chat', href: '/dashboard/chat', icon: MessageCircle },
@@ -57,8 +66,42 @@ export default function DashboardLayout({
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-pink-50 via-blue-50 to-purple-50">
+      {/* Mobile Header */}
+      <div className="lg:hidden fixed top-0 left-0 right-0 h-16 bg-white shadow-md z-40 flex items-center justify-between px-4">
+        <Link href="/dashboard">
+          <div className="flex items-center gap-2">
+            <span className="text-2xl">🌸</span>
+            <span className="text-lg font-bold text-gradient">日本語</span>
+          </div>
+        </Link>
+        <button
+          onClick={() => setSidebarOpen(!sidebarOpen)}
+          className="p-2 rounded-xl bg-gradient-to-r from-japanese-pink/10 to-japanese-blue/10 hover:from-japanese-pink/20 hover:to-japanese-blue/20 transition-all"
+        >
+          {sidebarOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+        </button>
+      </div>
+
+      {/* Mobile Overlay */}
+      <AnimatePresence>
+        {sidebarOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSidebarOpen(false)}
+            className="lg:hidden fixed inset-0 bg-black/50 z-40"
+          />
+        )}
+      </AnimatePresence>
+
       {/* Sidebar */}
-      <aside className="fixed left-0 top-0 h-full w-64 bg-white shadow-xl z-50 flex flex-col">
+      <aside className={`
+        fixed left-0 top-0 h-full w-64 bg-white shadow-xl z-50 flex flex-col
+        transform transition-transform duration-300 ease-in-out
+        lg:translate-x-0
+        ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}
+      `}>
         {/* Logo */}
         <div className="p-6 border-b border-gray-100">
           <Link href="/dashboard">
@@ -91,10 +134,22 @@ export default function DashboardLayout({
               <motion.div
                 whileHover={{ scale: 1.05, x: 5 }}
                 whileTap={{ scale: 0.95 }}
-                className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gradient-to-r hover:from-japanese-pink/20 hover:to-japanese-blue/20 transition-all cursor-pointer group"
+                className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all cursor-pointer group ${
+                  pathname === item.href || pathname?.startsWith(item.href + '/')
+                    ? 'bg-gradient-to-r from-japanese-pink/20 to-japanese-blue/20'
+                    : 'hover:bg-gradient-to-r hover:from-japanese-pink/20 hover:to-japanese-blue/20'
+                }`}
               >
-                <item.icon className="w-5 h-5 text-gray-600 group-hover:text-japanese-pink" />
-                <span className="font-medium text-gray-700 group-hover:text-japanese-pink">
+                <item.icon className={`w-5 h-5 ${
+                  pathname === item.href || pathname?.startsWith(item.href + '/')
+                    ? 'text-japanese-pink'
+                    : 'text-gray-600 group-hover:text-japanese-pink'
+                }`} />
+                <span className={`font-medium ${
+                  pathname === item.href || pathname?.startsWith(item.href + '/')
+                    ? 'text-japanese-pink'
+                    : 'text-gray-700 group-hover:text-japanese-pink'
+                }`}>
                   {item.name}
                 </span>
               </motion.div>
@@ -127,7 +182,7 @@ export default function DashboardLayout({
       </aside>
 
       {/* Main Content */}
-      <main className="ml-64 p-8">{children}</main>
+      <main className="lg:ml-64 p-4 md:p-6 lg:p-8 pt-20 lg:pt-8">{children}</main>
     </div>
   );
 }

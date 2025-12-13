@@ -70,7 +70,7 @@ export default function Home() {
       </div>
 
       {/* Hero Section */}
-      <section className="relative container mx-auto px-4 py-20">
+      <section className="relative container mx-auto px-4 py-12 md:py-20">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -80,12 +80,12 @@ export default function Home() {
           <motion.div
             animate={{ rotate: [0, 5, -5, 0] }}
             transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
-            className="inline-block text-8xl mb-6"
+            className="inline-block text-5xl md:text-8xl mb-4 md:mb-6"
           >
             🌸
           </motion.div>
 
-          <h1 className="text-6xl md:text-7xl font-bold mb-6">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 md:mb-6">
             <span className="text-gradient">日本語</span>
             <br />
             <span className="bg-gradient-to-r from-japanese-blue to-japanese-purple bg-clip-text text-transparent">
@@ -93,15 +93,15 @@ export default function Home() {
             </span>
           </h1>
 
-          <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-2xl mx-auto">
+          <p className="text-base md:text-xl lg:text-2xl text-gray-600 mb-6 md:mb-8 max-w-2xl mx-auto px-4">
             Belajar bahasa Jepang dengan AI yang fun dan interaktif!
-            <br />
-            Dari N5 sampai N1, kami bantu kamu! 💪
+            <br className="hidden sm:block" />
+            <span className="hidden sm:inline"> </span>Dari N5 sampai N1, kami bantu kamu! 💪
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center items-center px-4">
             <Link href="/auth/register">
-              <Button size="lg" className="group">
+              <Button size="lg" className="group w-full sm:w-auto">
                 <span className="mr-2">始めましょう！</span>
                 <motion.span
                   animate={{ x: [0, 5, 0] }}
@@ -113,23 +113,23 @@ export default function Home() {
             </Link>
 
             <Link href="/auth/login">
-              <Button size="lg" variant="outline">
+              <Button size="lg" variant="outline" className="w-full sm:w-auto">
                 <span>ログイン</span>
               </Button>
             </Link>
           </div>
 
-          <div className="mt-8 flex items-center justify-center gap-8 text-sm text-gray-500">
-            <div className="flex items-center gap-2">
-              <Sparkles className="w-4 h-4 text-japanese-yellow" />
+          <div className="mt-6 md:mt-8 flex flex-wrap items-center justify-center gap-4 md:gap-8 text-xs md:text-sm text-gray-500">
+            <div className="flex items-center gap-1 md:gap-2">
+              <Sparkles className="w-3 h-3 md:w-4 md:h-4 text-japanese-yellow" />
               <span>AI-Powered</span>
             </div>
-            <div className="flex items-center gap-2">
-              <Award className="w-4 h-4 text-japanese-pink" />
+            <div className="flex items-center gap-1 md:gap-2">
+              <Award className="w-3 h-3 md:w-4 md:h-4 text-japanese-pink" />
               <span>JLPT Prep</span>
             </div>
-            <div className="flex items-center gap-2">
-              <TrendingUp className="w-4 h-4 text-japanese-green" />
+            <div className="flex items-center gap-1 md:gap-2">
+              <TrendingUp className="w-3 h-3 md:w-4 md:h-4 text-japanese-green" />
               <span>Progress Tracking</span>
             </div>
           </div>
@@ -137,17 +137,17 @@ export default function Home() {
       </section>
 
       {/* Features Grid */}
-      <section className="container mx-auto px-4 py-20">
+      <section className="container mx-auto px-4 py-12 md:py-20">
         <motion.h2
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
-          className="text-4xl font-bold text-center mb-12"
+          className="text-2xl md:text-4xl font-bold text-center mb-8 md:mb-12"
         >
           <span className="text-gradient">何ができる？</span>
         </motion.h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           {features.map((feature, index) => (
             <motion.div
               key={index}
@@ -155,64 +155,64 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               whileHover={{ scale: 1.05, rotate: 1 }}
-              className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300"
+              className="bg-white rounded-xl md:rounded-2xl p-4 md:p-6 shadow-lg hover:shadow-2xl transition-all duration-300"
             >
               <div
-                className={`w-16 h-16 rounded-full bg-gradient-to-br ${feature.color} flex items-center justify-center text-white mb-4`}
+                className={`w-12 h-12 md:w-16 md:h-16 rounded-full bg-gradient-to-br ${feature.color} flex items-center justify-center text-white mb-3 md:mb-4`}
               >
                 {feature.icon}
               </div>
-              <h3 className="text-xl font-bold mb-2">{feature.title}</h3>
-              <p className="text-gray-600">{feature.description}</p>
+              <h3 className="text-lg md:text-xl font-bold mb-1 md:mb-2">{feature.title}</h3>
+              <p className="text-gray-600 text-sm md:text-base">{feature.description}</p>
             </motion.div>
           ))}
         </div>
       </section>
 
       {/* Stats Section */}
-      <section className="container mx-auto px-4 py-20">
-        <div className="bg-gradient-to-r from-japanese-pink via-japanese-purple to-japanese-blue rounded-3xl p-12 text-white">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+      <section className="container mx-auto px-4 py-12 md:py-20">
+        <div className="bg-gradient-to-r from-japanese-pink via-japanese-purple to-japanese-blue rounded-2xl md:rounded-3xl p-6 md:p-12 text-white">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-8 text-center">
             <motion.div
               whileHover={{ scale: 1.1 }}
               className="cursor-default"
             >
-              <div className="text-5xl font-bold mb-2">5000+</div>
-              <div className="text-xl opacity-90">Active Learners</div>
+              <div className="text-3xl md:text-5xl font-bold mb-1 md:mb-2">5000+</div>
+              <div className="text-base md:text-xl opacity-90">Active Learners</div>
             </motion.div>
             <motion.div
               whileHover={{ scale: 1.1 }}
               className="cursor-default"
             >
-              <div className="text-5xl font-bold mb-2">10K+</div>
-              <div className="text-xl opacity-90">Practice Sessions</div>
+              <div className="text-3xl md:text-5xl font-bold mb-1 md:mb-2">10K+</div>
+              <div className="text-base md:text-xl opacity-90">Practice Sessions</div>
             </motion.div>
             <motion.div
               whileHover={{ scale: 1.1 }}
               className="cursor-default"
             >
-              <div className="text-5xl font-bold mb-2">95%</div>
-              <div className="text-xl opacity-90">Success Rate</div>
+              <div className="text-3xl md:text-5xl font-bold mb-1 md:mb-2">95%</div>
+              <div className="text-base md:text-xl opacity-90">Success Rate</div>
             </motion.div>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="container mx-auto px-4 py-20 text-center">
+      <section className="container mx-auto px-4 py-12 md:py-20 text-center">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-5xl font-bold mb-6">
+          <h2 className="text-3xl md:text-5xl font-bold mb-4 md:mb-6">
             <span className="text-gradient">今日から始めよう！</span>
           </h2>
-          <p className="text-xl text-gray-600 mb-8">
+          <p className="text-base md:text-xl text-gray-600 mb-6 md:mb-8">
             Mulai perjalanan belajar bahasa Jepang kamu sekarang!
           </p>
           <Link href="/auth/register">
-            <Button size="lg" className="text-xl px-12 py-6">
+            <Button size="lg" className="text-base md:text-xl px-8 py-4 md:px-12 md:py-6">
               無料で始める 🚀
             </Button>
           </Link>
@@ -220,9 +220,9 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-gray-200 py-8 text-center text-gray-600">
-        <p>Made with 💖 by Om Tegar</p>
-        <p className="text-sm mt-2">© 2025 All rights reserved</p>
+      <footer className="border-t border-gray-200 py-6 md:py-8 text-center text-gray-600">
+        <p className="text-sm md:text-base">Made with 💖 by Om Tegar</p>
+        <p className="text-xs md:text-sm mt-2">© 2025 All rights reserved</p>
       </footer>
     </div>
   );

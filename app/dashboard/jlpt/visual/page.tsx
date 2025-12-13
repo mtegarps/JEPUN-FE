@@ -186,16 +186,16 @@ export default function VisualQuizzesPage() {
   };
 
   const renderQuizSelection = () => (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
       <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
         <Card hover className="cursor-pointer h-full" onClick={() => setQuizType('vocab')}>
-          <CardContent className="text-center py-8">
-            <Image className="w-16 h-16 mx-auto mb-4 text-japanese-pink" />
-            <h3 className="text-xl font-bold mb-2">Visual Vocabulary</h3>
-            <p className="text-gray-600">Learn vocabulary with images</p>
-            <div className="mt-4 flex flex-wrap justify-center gap-2">
+          <CardContent className="text-center py-6 md:py-8">
+            <Image className="w-12 h-12 md:w-16 md:h-16 mx-auto mb-3 md:mb-4 text-japanese-pink" />
+            <h3 className="text-lg md:text-xl font-bold mb-1 md:mb-2">Visual Vocabulary</h3>
+            <p className="text-gray-600 text-sm md:text-base">Learn vocabulary with images</p>
+            <div className="mt-3 md:mt-4 flex flex-wrap justify-center gap-2">
               {VOCAB_CATEGORIES.slice(0, 3).map(cat => (
-                <span key={cat.id} className="text-2xl">{cat.icon}</span>
+                <span key={cat.id} className="text-xl md:text-2xl">{cat.icon}</span>
               ))}
             </div>
           </CardContent>
@@ -204,15 +204,15 @@ export default function VisualQuizzesPage() {
 
       <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
         <Card hover className="cursor-pointer h-full" onClick={() => setQuizType('emotion')}>
-          <CardContent className="text-center py-8">
-            <Smile className="w-16 h-16 mx-auto mb-4 text-japanese-yellow" />
-            <h3 className="text-xl font-bold mb-2">Emotion Quiz</h3>
-            <p className="text-gray-600">Learn emotion vocabulary</p>
-            <div className="mt-4 flex justify-center gap-2">
-              <span className="text-2xl">😊</span>
-              <span className="text-2xl">😢</span>
-              <span className="text-2xl">😠</span>
-              <span className="text-2xl">😱</span>
+          <CardContent className="text-center py-6 md:py-8">
+            <Smile className="w-12 h-12 md:w-16 md:h-16 mx-auto mb-3 md:mb-4 text-japanese-yellow" />
+            <h3 className="text-lg md:text-xl font-bold mb-1 md:mb-2">Emotion Quiz</h3>
+            <p className="text-gray-600 text-sm md:text-base">Learn emotion vocabulary</p>
+            <div className="mt-3 md:mt-4 flex justify-center gap-2">
+              <span className="text-xl md:text-2xl">😊</span>
+              <span className="text-xl md:text-2xl">😢</span>
+              <span className="text-xl md:text-2xl">😠</span>
+              <span className="text-xl md:text-2xl">😱</span>
             </div>
           </CardContent>
         </Card>
@@ -657,17 +657,17 @@ export default function VisualQuizzesPage() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 md:space-y-6">
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="bg-gradient-to-r from-japanese-pink via-japanese-purple to-japanese-blue rounded-2xl p-6 text-white shadow-xl"
+        className="bg-gradient-to-r from-japanese-pink via-japanese-purple to-japanese-blue rounded-xl md:rounded-2xl p-4 md:p-6 text-white shadow-xl"
       >
-        <div className="flex items-center gap-4">
-          <div className="text-5xl">🎨</div>
+        <div className="flex items-center gap-3 md:gap-4">
+          <div className="text-3xl md:text-5xl">🎨</div>
           <div>
-            <h1 className="text-3xl font-bold">Visual Quizzes</h1>
-            <p className="opacity-90">Learn Japanese with images and interactive content</p>
+            <h1 className="text-xl md:text-3xl font-bold">Visual Quizzes</h1>
+            <p className="opacity-90 text-xs md:text-base">Learn Japanese with images and interactive content</p>
           </div>
         </div>
       </motion.div>

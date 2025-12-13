@@ -69,20 +69,20 @@ export default function LoginPage() {
         transition={{ duration: 0.5 }}
         className="w-full max-w-md relative z-10"
       >
-        <div className="bg-white rounded-3xl shadow-2xl p-8 japanese-shadow">
+        <div className="bg-white rounded-2xl md:rounded-3xl shadow-2xl p-6 md:p-8 japanese-shadow">
           {/* Header */}
-          <div className="text-center mb-8">
+          <div className="text-center mb-6 md:mb-8">
             <motion.div
               animate={{ rotate: [0, 10, -10, 0] }}
               transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
-              className="text-6xl mb-4"
+              className="text-4xl md:text-6xl mb-3 md:mb-4"
             >
               🌸
             </motion.div>
-            <h1 className="text-3xl font-bold text-gradient mb-2">
+            <h1 className="text-2xl md:text-3xl font-bold text-gradient mb-2">
               おかえりなさい！
             </h1>
-            <p className="text-gray-600">Welcome back! Let's continue learning</p>
+            <p className="text-gray-600 text-sm md:text-base">Welcome back! Let's continue learning</p>
           </div>
 
           {/* Form */}

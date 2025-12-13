@@ -105,33 +105,34 @@ export default function GrammarPage() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 md:space-y-6">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="bg-gradient-to-r from-japanese-blue via-japanese-green to-japanese-purple rounded-2xl p-6 text-white shadow-xl"
+        className="bg-gradient-to-r from-japanese-blue via-japanese-green to-japanese-purple rounded-xl md:rounded-2xl p-4 md:p-6 text-white shadow-xl"
       >
-        <div className="flex items-center gap-4">
-          <div className="text-5xl">📚</div>
+        <div className="flex items-center gap-3 md:gap-4">
+          <div className="text-3xl md:text-5xl">📚</div>
           <div>
-            <h1 className="text-3xl font-bold">Grammar Checker</h1>
-            <p className="opacity-90">Check, explain, and improve your Japanese grammar</p>
+            <h1 className="text-xl md:text-3xl font-bold">Grammar Checker</h1>
+            <p className="opacity-90 text-xs md:text-base">Check, explain, and improve your Japanese grammar</p>
           </div>
         </div>
       </motion.div>
 
       {/* Tabs */}
-      <div className="flex gap-2 overflow-x-auto pb-2">
+      <div className="flex gap-2 overflow-x-auto pb-2 -mx-4 px-4 md:mx-0 md:px-0">
         {tabs.map((tab) => (
           <Button
             key={tab.id}
             variant={activeTab === tab.id ? 'primary' : 'outline'}
             onClick={() => setActiveTab(tab.id)}
-            className="whitespace-nowrap"
+            className="whitespace-nowrap text-xs md:text-sm px-3 md:px-4"
           >
-            <tab.icon className="w-4 h-4 mr-2" />
-            {tab.label}
+            <tab.icon className="w-3 h-3 md:w-4 md:h-4 mr-1 md:mr-2" />
+            <span className="hidden sm:inline">{tab.label}</span>
+            <span className="sm:hidden">{tab.label.split(' ')[0]}</span>
           </Button>
         ))}
       </div>
@@ -308,14 +309,14 @@ export default function GrammarPage() {
             >
               <Card>
                 <CardContent className="space-y-4">
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="bg-pink-50 rounded-xl p-4">
-                      <h4 className="font-bold mb-2">Sentence 1:</h4>
-                      <p>{comparison.sentence1}</p>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
+                    <div className="bg-pink-50 rounded-xl p-3 md:p-4">
+                      <h4 className="font-bold mb-2 text-sm md:text-base">Sentence 1:</h4>
+                      <p className="text-sm md:text-base">{comparison.sentence1}</p>
                     </div>
-                    <div className="bg-blue-50 rounded-xl p-4">
-                      <h4 className="font-bold mb-2">Sentence 2:</h4>
-                      <p>{comparison.sentence2}</p>
+                    <div className="bg-blue-50 rounded-xl p-3 md:p-4">
+                      <h4 className="font-bold mb-2 text-sm md:text-base">Sentence 2:</h4>
+                      <p className="text-sm md:text-base">{comparison.sentence2}</p>
                     </div>
                   </div>
 
